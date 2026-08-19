@@ -1,5 +1,6 @@
 import asyncio
 import json
+import sys
 
 from meshweaver.peer import Peer, generate_node_id
 from meshweaver.routing_table import RoutingTable
@@ -125,4 +126,11 @@ async def start_discovery_node(host="127.0.0.1", port=9002):
 
 
 if __name__ == "__main__":
-    asyncio.run(start_discovery_node())
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 9002
+
+    asyncio.run(
+        start_discovery_node(
+            host="127.0.0.1",
+            port=port
+        )
+    )
